@@ -2,6 +2,7 @@
   import svelteLogo from "./assets/svelte.svg";
   import viteLogo from "/vite.svg";
   import Counter from "./lib/Counter.svelte";
+  import ThemeSwitch from "./lib/ThemeSwitch.svelte";
 </script>
 
 <main>
@@ -39,4 +40,6 @@
   <p class="text-neutral-500 my-4 leading-6">
     Click on the Vite and Svelte logos to learn more
   </p>
+
+  <ThemeSwitch />
 </main>
