@@ -3,6 +3,7 @@
   import viteLogo from "/vite.svg";
   import Counter from "./lib/Counter.svelte";
   import ThemeSwitch from "./lib/ThemeSwitch.svelte";
+  import Pixi from "./lib/Pixi.svelte";
 </script>
 
 <main>
@@ -42,4 +43,5 @@
   </p>
 
   <ThemeSwitch />
+  <Pixi />
 </main>

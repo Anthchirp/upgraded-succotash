@@ -7,7 +7,7 @@
 
 <button
   onclick={increment}
-  class="border bg-zinc-50 dark:bg-zinc-900 hover:border-sky-600 border-transparent rounded-lg px-5 py-2.5 transition-colors duration-200"
+  class="border bg-zinc-100 dark:bg-zinc-900 hover:border-sky-600 border-transparent rounded-lg px-5 py-2.5 transition-colors duration-200"
 >
   count is {count}
 </button>
