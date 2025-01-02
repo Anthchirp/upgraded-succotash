@@ -1,9 +1,16 @@
 <script lang="ts">
-  import { Application, Sprite, Assets } from "pixi.js";
+  import { Application, Sprite, Assets, Rectangle } from "pixi.js";
   import { onMount, onDestroy } from "svelte";
+  import Infobox from "./Infobox.svelte";
+  import { writable } from "svelte/store";
 
   let boundContainer: HTMLDivElement | null = null;
   let app: Application;
+
+  // Tooltip store
+  const tooltip = writable<{ x: number; y: number; content: string } | null>(
+    null,
+  );
 
   onMount(() => {
     if (!boundContainer) return;
@@ -15,7 +22,9 @@
     // Optional: Add any Pixi.js setup here
     const setup = async () => {
       await app.init({ background: "#1099bb", resizeTo: appContainer });
-      //document.body.appendChild(app.canvas);
+
+      (globalThis as any).__PIXI_APP__ = app; // eslint-disable-line
+
       // Append the canvas to the container
       if (appContainer) appContainer.appendChild(app.canvas);
 
@@ -28,9 +37,42 @@
         bunny.x = app.screen.width / 2;
         bunny.y = app.screen.height / 2;
         bunny.anchor.set(0.5);
+
+        // Add a ticker callback to move the sprite back and forth
+        let elapsed = 0.0;
+        app.ticker.add((ticker) => {
+          elapsed += ticker.deltaTime / 20;
+          bunny.x =
+            ((Math.cos(elapsed / 50.0) + 1.1) * app.screen.width * 0.9) / 2;
+          bunny.y =
+            ((Math.sin(elapsed / 50.0) + 1.1) * app.screen.height * 0.9) / 2;
+        });
+
+        bunny.eventMode = "static";
+        bunny.on("pointerdown", (event) => {
+          event.stopPropagation();
+          const containerRect = appContainer?.getBoundingClientRect();
+          if (!containerRect) return;
+          const { x, y } = event.global;
+          tooltip.set({
+            x: x + containerRect.left + window.scrollX,
+            y: y + containerRect.top + window.scrollY,
+            content: `Sprite clicked! ${elapsed}`,
+          });
+        });
       } catch (error) {
         console.error("Error loading assets:", error);
       }
+      app.stage.interactive = true;
+      app.stage.hitArea = new Rectangle(
+        0,
+        0,
+        app.screen.width,
+        app.screen.height,
+      );
+      app.stage.on("pointerdown", () => {
+        tooltip.set(null);
+      });
     };
     setup();
 
@@ -46,3 +88,7 @@
   style="width: 800px; height: 600px;"
   class="border-red-400 border-4"
 ></div>
+
+{#if $tooltip}
+  <Infobox x={$tooltip.x} y={$tooltip.y} content={$tooltip.content} />
+{/if}
