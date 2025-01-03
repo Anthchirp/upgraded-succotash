@@ -1,25 +1,25 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vite, Svelte, TS, Tailwind</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite, Svelte, TS, Tailwind</title>
+        <!-- Check & apply theme here to avoid FOUC -->
+        <script>
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+                ? document.documentElement.classList.add("dark")
+                : document.documentElement.classList.remove("dark")
+        </script>
+    </head>
 
-  <!-- Check & apply theme here to avoid FOUC -->
-  <script>
-    localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ? document.documentElement.classList.add('dark')
-      : document.documentElement.classList.remove('dark');
-  </script>
-</head>
-
-<body
-  class="antialiased min-w-80 min-h-screen flex place-items-center bg-white dark:bg-black text-black dark:text-white">
-  <div id="app" class="mx-auto my-0 max-w-7xl p-8 text-center"></div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+    <body
+        class="flex min-h-screen min-w-80 place-items-center bg-white text-black antialiased dark:bg-black dark:text-white"
+    >
+        <div id="app" class="mx-auto my-0 max-w-7xl p-8 text-center"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>

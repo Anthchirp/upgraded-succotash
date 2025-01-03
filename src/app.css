@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    transition:
+        background-color 0.2s ease-in-out,
+        color 0.2s ease-in-out;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+    .toggle-btn {
+        @apply [&>div::after]:translate-y-0 [&>div::after]:-rotate-45 [&>div::before]:translate-y-0 [&>div::before]:rotate-45 [&>div]:rotate-180 [&>div]:bg-transparent;
+    }
 }

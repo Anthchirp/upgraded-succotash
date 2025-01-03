@@ -1,7 +1,8 @@
 {
-  "recommendations": [
-    "svelte.svelte-vscode",
-    "github.vscode-github-actions",
-    "bradlc.vscode-tailwindcss"
-  ]
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "github.vscode-github-actions",
+        "svelte.svelte-vscode"
+    ]
 }
