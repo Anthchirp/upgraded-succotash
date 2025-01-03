@@ -4,6 +4,7 @@
   import Counter from "./lib/Counter.svelte";
   import ThemeSwitch from "./lib/ThemeSwitch.svelte";
   import Pixi from "./lib/Pixi.svelte";
+  import Menu from "./lib/Menu.svelte";
 </script>
 
 <main>
@@ -42,6 +43,7 @@
     Click on the Vite and Svelte logos to learn more
   </p>
 
+  <Menu />
   <ThemeSwitch />
   <Pixi />
 </main>
