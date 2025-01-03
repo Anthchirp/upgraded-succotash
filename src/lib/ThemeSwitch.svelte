@@ -1,41 +1,41 @@
 <script lang="ts">
-  export const browser = !import.meta.env.SSR;
-  let darkMode = true;
+    export const browser = !import.meta.env.SSR
+    let darkMode = true
 
-  function handleSwitchDarkMode() {
-    darkMode = !darkMode;
+    function handleSwitchDarkMode() {
+        darkMode = !darkMode
 
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
+        localStorage.setItem("theme", darkMode ? "dark" : "light")
 
-    darkMode
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
-  }
-
-  if (browser) {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
-      darkMode = true;
-    } else {
-      document.documentElement.classList.remove("dark");
-      darkMode = false;
+        darkMode
+            ? document.documentElement.classList.add("dark")
+            : document.documentElement.classList.remove("dark")
     }
-  }
+
+    if (browser) {
+        if (
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            document.documentElement.classList.add("dark")
+            darkMode = true
+        } else {
+            document.documentElement.classList.remove("dark")
+            darkMode = false
+        }
+    }
 </script>
 
 <div>
-  <input
-    checked={darkMode}
-    on:click={handleSwitchDarkMode}
-    type="checkbox"
-    id="theme-toggle"
-  />
-  <label for="theme-toggle" />
-  <!--
+    <input
+        checked={darkMode}
+        on:click={handleSwitchDarkMode}
+        type="checkbox"
+        id="theme-toggle"
+    />
+    <label for="theme-toggle" />
+    <!--
   <button
     on:click={handleSwitchDarkMode}
     class="relative inline-flex items-center py-1.5 px-2 rounded-full transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus:outline-none bg-cyan-500 text-cyan-200 focus-visible:ring-cyan-600"
@@ -121,20 +121,20 @@
 </div>
 
 <style lang="postcss">
-  #theme-toggle {
-    @apply invisible;
-  }
+    #theme-toggle {
+        @apply invisible;
+    }
 
-  #theme-toggle + label {
-    @apply inline-block cursor-pointer h-12 w-12 absolute top-6 right-24 rounded-full duration-300 content-[''];
-  }
+    #theme-toggle + label {
+        @apply absolute right-24 top-6 inline-block h-12 w-12 cursor-pointer rounded-full duration-300 content-[''];
+    }
 
-  #theme-toggle:not(:checked) + label {
-    @apply bg-amber-400;
-  }
+    #theme-toggle:not(:checked) + label {
+        @apply bg-amber-400;
+    }
 
-  #theme-toggle:checked + label {
-    @apply bg-transparent;
-    box-shadow: inset -18px -16px 1px 1px #ddd;
-  }
+    #theme-toggle:checked + label {
+        @apply bg-transparent;
+        box-shadow: inset -18px -16px 1px 1px #ddd;
+    }
 </style>

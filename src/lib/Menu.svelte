@@ -13,23 +13,23 @@
 <button
     bind:this={menuButton}
     onclick={toggleMenu}
-    class="relative w-8 h-8 cursor-pointer text-8xl text-sky-600"
+    class="relative h-8 w-8 cursor-pointer text-8xl text-sky-600"
 >
     <div
-        class="bg-white w-8 h-1 rounded absolute top-4 -mt-0.5 before:content-[''] transition-all duration-500 before:bg-white before:h-1 before:rounded before:absolute before:w-8 before:transition-all before:duration-500 before:-translate-x-4 before:-translate-y-3 after:content-[''] after:bg-white after:h-1 after:rounded after:absolute after:w-8 after:transition-all after:duration-500 after:-translate-x-4 after:translate-y-3"
+        class="absolute top-4 -mt-0.5 h-1 w-8 rounded bg-white transition-all duration-500 before:absolute before:h-1 before:w-8 before:-translate-x-4 before:-translate-y-3 before:rounded before:bg-white before:transition-all before:duration-500 before:content-[''] after:absolute after:h-1 after:w-8 after:-translate-x-4 after:translate-y-3 after:rounded after:bg-white after:transition-all after:duration-500 after:content-['']"
     ></div>
     <!-- &#9776; -->
 </button>
 <section
     bind:this={menuSection}
     onclick={toggleMenu}
-    class="origin-top animate-open-menu hidden absolute top-68 bg-black w-full flex-col justify-content-center border border-green-400"
+    class="top-68 justify-content-center absolute hidden w-full origin-top animate-open-menu flex-col border border-green-400 bg-black"
 >
     <!-- <button class="self-end px-6 text-8xl text-sky-600">&times;</button> -->
     <nav class="flex flex-col items-center py-8" aria-label="mobile">
         <a
             href="#home"
-            class="w-full text-center py-6 hover:opacity-90 border border-green-300"
+            class="w-full border border-green-300 py-6 text-center hover:opacity-90"
             >Home</a
         >
     </nav>
