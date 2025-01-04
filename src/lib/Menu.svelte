@@ -1,4 +1,7 @@
 <script lang="ts">
+    import Counter from "./Counter.svelte"
+    import ThemeSwitch from "./ThemeSwitch.svelte"
+
     let menuButton: HTMLButtonElement | null = null
     let menuSection: HTMLElement | null = null
 
@@ -23,7 +26,7 @@
 <button
     bind:this={menuButton}
     onclick={toggleMenu}
-    class="relative h-8 w-8 cursor-pointer"
+    class="fixed right-16 top-16 z-10 h-8 w-8 cursor-pointer"
     aria-label="Toggle Menu"
     aria-haspopup="menu"
     aria-expanded="false"
@@ -38,15 +41,21 @@
     onclick={toggleMenu}
     onkeydown={toggleMenuOnEscape}
     id="menuSection"
-    class="top-68 justify-content-center absolute hidden w-full origin-top animate-open-menu flex-col border border-green-400 bg-white dark:bg-black"
+    class="justify-content-center fixed right-12 top-12 hidden w-64 origin-top-right animate-open-menu flex-col rounded-lg border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950"
     role="menu"
     tabindex="-1"
 >
-    <nav class="flex flex-col items-center py-8" aria-label="mobile">
+    <nav class="flex flex-col items-center pb-6 pt-3" aria-label="mobile">
+        <div class="mb-3 w-full pl-3 text-left">
+            <ThemeSwitch />
+        </div>
         <a
             href="#home"
-            class="w-full border border-green-300 py-6 text-center hover:opacity-90"
+            class="w-full py-5 text-center text-xl hover:bg-slate-300 dark:hover:bg-slate-700"
             >Home</a
         >
+        <div class="p-3">
+            <Counter />
+        </div>
     </nav>
 </section>

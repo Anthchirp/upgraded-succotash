@@ -1,8 +1,6 @@
 <script lang="ts">
     import svelteLogo from "./assets/svelte.svg"
     import viteLogo from "/vite.svg"
-    import Counter from "./lib/Counter.svelte"
-    import ThemeSwitch from "./lib/ThemeSwitch.svelte"
     import Pixi from "./lib/Pixi.svelte"
     import Menu from "./lib/Menu.svelte"
 </script>
@@ -26,10 +24,6 @@
     </div>
     <h1 class="p-8 text-5xl font-bold leading-tight">Vite + Svelte</h1>
 
-    <div class="p-8">
-        <Counter />
-    </div>
-
     <p class="my-4 leading-6">
         Check out <a
             class="text-sky-600 hover:text-sky-500 dark:hover:text-sky-700"
@@ -44,6 +38,5 @@
     </p>
 
     <Menu />
-    <ThemeSwitch />
     <Pixi />
 </main>
