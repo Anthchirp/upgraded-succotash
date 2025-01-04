@@ -1,7 +1,16 @@
 <script lang="ts">
     export const browser = !import.meta.env.SSR
-    let darkModeEnabled = true
-    let buttonLabel = ""
+    let darkMode = true
+    if (browser) {
+        darkMode =
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.setItem("theme", darkMode ? "dark" : "light")
+    }
+
+    let darkModeEnabled = $state(darkMode)
+    let buttonLabel = $state("")
 
     function updatePageDarkMode() {
         if (darkModeEnabled) {
@@ -14,24 +23,18 @@
         }
     }
 
-    function handleSwitchDarkMode() {
+    function handleSwitchDarkMode(event: Event) {
+        event.stopPropagation()
         darkModeEnabled = !darkModeEnabled
         localStorage.setItem("theme", darkModeEnabled ? "dark" : "light")
         updatePageDarkMode()
     }
 
-    if (browser) {
-        darkModeEnabled =
-            localStorage.theme === "dark" ||
-            (!("theme" in localStorage) &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches)
-        localStorage.setItem("theme", darkModeEnabled ? "dark" : "light")
-        updatePageDarkMode()
-    }
+    updatePageDarkMode()
 </script>
 
 <button
-    on:click|stopPropagation={handleSwitchDarkMode}
+    onclick={handleSwitchDarkMode}
     class="group relative inline-flex items-center rounded-full bg-cyan-500 px-2 py-1.5 text-cyan-200 transition-colors duration-300 hover:bg-cyan-400 hover:text-cyan-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-700 dark:text-slate-400 hover:dark:bg-slate-600 dark:hover:text-slate-200 dark:focus-visible:ring-slate-500"
     role="switch"
     type="button"

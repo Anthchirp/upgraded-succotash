@@ -4,8 +4,7 @@
     import Infobox from "./Infobox.svelte"
     import { writable } from "svelte/store"
 
-    let boundContainer: HTMLDivElement | null = null
-    let app: Application
+    let boundContainer: HTMLDivElement | null = $state(null)
 
     // Tooltip store
     const tooltip = writable<{ x: number; y: number; content: string } | null>(

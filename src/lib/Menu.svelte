@@ -2,8 +2,8 @@
     import Counter from "./Counter.svelte"
     import ThemeSwitch from "./ThemeSwitch.svelte"
 
-    let menuButton: HTMLButtonElement | null = null
-    let menuSection: HTMLElement | null = null
+    let menuButton: HTMLButtonElement | null = $state(null)
+    let menuSection: HTMLElement | null = $state(null)
 
     const toggleMenu = () => {
         menuSection?.classList.toggle("hidden")

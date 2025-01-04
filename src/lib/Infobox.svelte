@@ -1,7 +1,11 @@
 <script lang="ts">
-    export let x: number
-    export let y: number
-    export let content: string
+    interface Props {
+        x: number;
+        y: number;
+        content: string;
+    }
+
+    let { x, y, content }: Props = $props();
 </script>
 
 <div class="tooltip" style="left: {x}px; top: {y}px;">

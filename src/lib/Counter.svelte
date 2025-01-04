@@ -1,8 +1,8 @@
 <script lang="ts">
     let count: number = $state(0)
     const increment = (event: Event) => {
-        count += 1
         event.stopPropagation()
+        count += 1
     }
 </script>
 
