@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { getContext } from "svelte"
     import { Application, Sprite, Assets, Rectangle } from "pixi.js"
     import { onMount, onDestroy } from "svelte"
     import Infobox from "./Infobox.svelte"
@@ -11,6 +12,10 @@
         null,
     )
 
+    import type { Unsubscriber, Writable } from "svelte/store"
+    const globalDarkMode: Writable<Boolean | null> = getContext("darkmode")
+    let globalDarkModeUnsubscribe: Unsubscriber | null
+
     onMount(() => {
         if (!boundContainer) return
         const appContainer: HTMLDivElement = boundContainer
@@ -20,7 +25,7 @@
 
         // Optional: Add any Pixi.js setup here
         const setup = async () => {
-            await app.init({ background: "#1099bb", resizeTo: appContainer })
+            await app.init({ backgroundAlpha: 0, resizeTo: appContainer })
             ;(globalThis as any).__PIXI_APP__ = app // eslint-disable-line
 
             // Append the canvas to the container
@@ -77,12 +82,25 @@
             app.stage.on("pointerdown", () => {
                 tooltip.set(null)
             })
+
+            // Subscribe to global events
+            globalDarkModeUnsubscribe =
+                globalDarkMode.subscribe(updateColorTheme)
         }
         setup()
+
+        function updateColorTheme(darkmode: Boolean | null) {
+            if (darkmode == null || !app.renderer) {
+                return
+            }
+            console.log("Pixi listener dark mode toggled", darkmode)
+            app.renderer.background.color = darkmode ? 0x000000 : 0xffffff
+        }
 
         // Cleanup when component is destroyed
         onDestroy(() => {
             app.destroy(true, { children: true })
+            globalDarkModeUnsubscribe?.()
         })
     })
 </script>

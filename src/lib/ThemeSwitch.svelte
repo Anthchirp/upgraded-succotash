@@ -1,22 +1,30 @@
 <script lang="ts">
+    import { getContext } from "svelte"
+    import app from "../main"
     export const browser = !import.meta.env.SSR
-    let darkMode = true
+
+    let initialDarkMode = false
     if (browser) {
-        darkMode =
+        initialDarkMode =
             localStorage.theme === "dark" ||
             (!("theme" in localStorage) &&
                 window.matchMedia("(prefers-color-scheme: dark)").matches)
-        localStorage.setItem("theme", darkMode ? "dark" : "light")
+        localStorage.setItem("theme", initialDarkMode ? "dark" : "light")
     }
+    import type { Writable } from "svelte/store"
+    const globalDarkMode: Writable<Boolean | null> = getContext("darkmode")
 
-    let darkModeEnabled = $state(darkMode)
+    let darkModeEnabled = $state(initialDarkMode)
+    $effect(() => {
+        globalDarkMode.set(darkModeEnabled)
+    })
+
     let buttonLabel = $state("")
 
     function updatePageDarkMode() {
         if (darkModeEnabled) {
             document.documentElement.classList.add("dark")
             buttonLabel = "Disable dark mode"
-            // $host().dispatchEvent(new CustomEvent(type))
         } else {
             document.documentElement.classList.remove("dark")
             buttonLabel = "Enable dark mode"
