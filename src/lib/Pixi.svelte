@@ -22,7 +22,6 @@
         // Optional: Add any Pixi.js setup here
         const setup = async () => {
             await app.init({ background: "#1099bb", resizeTo: appContainer })
-
             ;(globalThis as any).__PIXI_APP__ = app // eslint-disable-line
 
             // Append the canvas to the container
