@@ -41,7 +41,7 @@
     onclick={toggleMenu}
     onkeydown={toggleMenuOnEscape}
     id="menuSection"
-    class="justify-content-center fixed right-12 top-12 hidden w-64 origin-top-right animate-open-menu flex-col rounded-lg border-2 border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950"
+    class="justify-content-center fixed right-12 top-12 hidden w-64 origin-top-right animate-open-menu flex-col rounded-lg border-2 border-slate-300 bg-slate-50 transition-colors duration-500 dark:border-slate-700 dark:bg-slate-950"
     role="menu"
     tabindex="-1"
 >

@@ -8,18 +8,9 @@
     let { x, y, content }: Props = $props()
 </script>
 
-<div class="tooltip" style="left: {x}px; top: {y}px;">
+<div
+    class="tooltip sha absolute z-50 rounded-md border-4 border-purple-700 bg-red-500 p-3 shadow-lg shadow-purple-300 transition-colors duration-500 dark:shadow-purple-700"
+    style="left: {x}px; top: {y}px;"
+>
     {content}
 </div>
-
-<style>
-    .tooltip {
-        position: absolute;
-        background: red;
-        padding: 10px;
-        border: 4px solid purple;
-        border-radius: 5px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-    }
-</style>
