@@ -7,6 +7,7 @@
         if (darkModeEnabled) {
             document.documentElement.classList.add("dark")
             buttonLabel = "Disable dark mode"
+            // $host().dispatchEvent(new CustomEvent(type))
         } else {
             document.documentElement.classList.remove("dark")
             buttonLabel = "Enable dark mode"
@@ -24,6 +25,7 @@
             localStorage.theme === "dark" ||
             (!("theme" in localStorage) &&
                 window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.setItem("theme", darkModeEnabled ? "dark" : "light")
         updatePageDarkMode()
     }
 </script>

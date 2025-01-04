@@ -88,11 +88,7 @@
     })
 </script>
 
-<div
-    bind:this={boundContainer}
-    style="width: 800px; height: 600px;"
-    class="border-4 border-red-400"
-></div>
+<div bind:this={boundContainer} class="h-screen w-screen"></div>
 
 {#if $tooltip}
     <Infobox x={$tooltip.x} y={$tooltip.y} content={$tooltip.content} />
